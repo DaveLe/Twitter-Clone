@@ -15,10 +15,8 @@
           <h1>{{ poster['title'] }}</h1>
           <div class="about">by {{ poster['userinfo']['username'] }} </div>
         </div>
-        {{g.user['_id']}} and {{poster['author_id']}}
         {% if g.user['_id'] == poster['author_id'] %}
           <a class="action" href="{{ url_for('blog.update', id=poster['_id']|string) }}">Edit</a> 
-        {{poster['_id']|string}}
         {% endif %}
       </header>
       <p class="body">{{ poster['body'] }}</p>

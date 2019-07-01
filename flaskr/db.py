@@ -30,7 +30,7 @@ def close_db(e=None):
 def init_db():
     db = get_db()['pymongo_test']
 
-    users = db['user'] #The table AKA collection name
+    users = db['user'] #user is the collection name
 
     user_1 = {
         'username': 'davidle',
@@ -55,17 +55,6 @@ def init_db():
 
     result1 = posts.insert_one(post_1)
 
-#     CREATE TABLE post (
-#   id INTEGER PRIMARY KEY AUTOINCREMENT,
-#   author_id INTEGER NOT NULL,
-#   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-#   title TEXT NOT NULL,
-#   body TEXT NOT NULL,
-#   FOREIGN KEY (author_id) REFERENCES user (id)
-# );
-
-    # with current_app.open_resource('schema.sql') as f:
-    #     db.executescript(f.read().decode('utf8'))
 
 
 @click.command('init-db')
