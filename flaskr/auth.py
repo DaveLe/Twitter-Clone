@@ -1,6 +1,7 @@
 import functools
 from bson import ObjectId
 import sys
+from flask import Response
 
 #from pymongo import MongoClient
 
@@ -18,6 +19,7 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
+        # print(request.form['username'], file=sys.stderr)
         username = request.form['username']
         password = request.form['password']
         client = get_db()
@@ -34,11 +36,13 @@ def register():
         if error is None:
             db.user.insert_one({'username': username, 'password': generate_password_hash(password)})
             # db.user.save()
-            return redirect(url_for('auth.login'))
+            # return redirect(url_for('auth.login'))
+            return Response(status=200)
 
-        flash(error)
+        # flash(error)
 
-    return render_template('auth/register.html')
+    # return render_template('auth/register.html')
+    return Response(status=404)
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
@@ -61,11 +65,13 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = str(user['_id'])
-            return redirect(url_for('index'))
+            return Response(status=200)
+            # return redirect(url_for('index'))
 
-        flash(error)
+        # flash(error)
 
-    return render_template('auth/login.html')
+    # return render_template('auth/login.html')
+    return Response(status=404)
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -83,14 +89,15 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return Response(status=200)
+    # return redirect(url_for('index'))
 
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for('auth.login'))
+# def login_required(view):
+#     @functools.wraps(view)
+#     def wrapped_view(**kwargs):
+#         if g.user is None:
+#             return redirect(url_for('auth.login'))
 
-        return view(**kwargs)
+#         return view(**kwargs)
 
-    return wrapped_view
+#     return wrapped_view

@@ -13,7 +13,7 @@ export default class RegistrationPage extends Component{
 	// 	this.handleSubmit = this.handleSubmit.bind(this)
 	// }
 	state = {
-		username: ""
+		username: "",
 		password: ""
 	}
 
@@ -27,12 +27,13 @@ export default class RegistrationPage extends Component{
 		event.preventDefault();
 
 	    const registerInfo = {
-	        username: this.state.username
+	        username: this.state.username,
 	        password: this.state.password
 	    };
 	    // flask link 'http://127.0.0.1:5000/', 
-	    axios.post(window.location.origin + '/auth/register', registerInfo)
+	    axios.post('http://127.0.0.1:5000/auth/register', registerInfo)
         .then(res => {
+        	console.log(res)
             window.location.reload();
         })
         .catch(err => {
@@ -52,16 +53,16 @@ export default class RegistrationPage extends Component{
 					placeholder="Username" 
 					onChange={this.handleChange}
 				/>
-				<h1>{this.state.username}</h1>
+			
 
 				<input 
-				type="password" 
-				name = "password" 
-				value = {this.state.password}
-				placeholder="Password" 
-				onChange={this.handleChange}
+					type="password" 
+					name = "password" 
+					value = {this.state.password}
+					placeholder="Password" 
+					onChange={this.handleChange}
 				/>
-				<h1>{this.state.password}</h1>
+				
 				<button>Register</button>
 			</form>
 		)

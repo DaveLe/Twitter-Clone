@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
 import axios from "axios";
-import LoginPage from './pages/LoginPage'
-import RegistrationPage from './pages/RegistrationPage'
+import LoginPage from './LoginPage'
+import RegistrationPage from './RegistrationPage'
+import PostsPage from './PostsPage'
+import NewPostPage from './NewPostPage'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
+
 
 class HomePage extends Component{
 	constructor(){
@@ -13,28 +17,64 @@ class HomePage extends Component{
 
 			
 		}
-		this.handleClick = this.handleClick.bind(this)
+		// this.handleLogClick = this.handleLogClick.bind(this)
+		// this.handleRegistrationClick = this.handleRegistrationClick.bind(this)
 	}
 
-	handleClick(){
-		this.setState(prevState => {
-			return{
-				isLoggedClicked : !prevState.isLoggedClicked
-			}
-		})
-	}
+	// handleRegistrationClick(){
+	// 	this.setState(prevState => {
+	// 		return{
+	// 			isRegisterClicked : !prevState.isRegisterClicked
+	// 		}
+	// 	})
+	// }
+
+	// handleLogClick(){
+	// 	this.setState(prevState => {
+	// 		return{
+	// 			isLoggedClicked : !prevState.isLoggedClicked
+	// 		}
+	// 	})
+	// }
+
 	render(){
-		let isLoggedInText = this.state.isLoggedClicked ? this.state.username : "Register"
-		let loggedInOrOut = this.state.isLoggedClicked? "Log Out" : "Log In"
+		// let registerText = this.state.isRegisterClicked ? <RegistrationPage /> : "Register"
+		let loggedText = this.state.isLoggedClicked? "Log Out" : "Log In"
 
 		return(
 
 			<div>
-				<h1>Twitter-Clone</h1>
-				<button onClick = {this.handleClick}> {isLoggedInText} </button>
-				<button onClick = {this.handleClick}> {loggedInOrOut} </button>
+				<Link to="/">
+					<button>
+						Home
+					</button>
+				</Link>
 
-				<h1>Posts</h1>
+				<h1>Twitter-Clone</h1>
+				<Link to="/register">
+					<button 
+						name = "isRegisterClicked" 
+						value = {this.state.isRegisterClicked}> 
+					Register
+					</button>
+				</Link>
+
+				<Link to="/login">
+					<button 
+						name = "isLoggedClicked" 
+						value = {this.state.isLoggedClicked}> 
+					Login
+					</button>
+				</Link>
+
+
+
+
+				<Route path="/" exact component={PostsPage}/>
+				<Route path="/login" component={LoginPage}/>
+				<Route path="/register" component={RegistrationPage}/>
+				<Route path="/new_post" component={NewPostPage}/>
+
 			</div>
 		)
 

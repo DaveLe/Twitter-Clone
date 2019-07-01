@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
+import axios from "axios";
 import HomePage from './pages/HomePage'
-import LoginPage from './pages/LoginPage'
+
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -25,12 +26,23 @@ import LoginPage from './pages/LoginPage'
 //   );
 // }
 
-function App(){
-  return(
-    <div>
-      <HomePage />
-    </div>
-  )
-}
+export default class App extends Component{
+  constructor(){
+    super()
+    this.state = {
+    }
+  }
 
-export default App;
+  // componentDidMount(){
+  //   axios.get('http://127.0.0.1:5000/').then(res => {
+  //     console.log(res)
+  //   })
+  // }
+  render(){
+    return(
+      <div>
+        <HomePage />
+      </div>
+    )
+  }
+}

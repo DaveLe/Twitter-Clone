@@ -4,7 +4,7 @@ from flask import (
 import flask
 from werkzeug.exceptions import abort
 
-from flaskr.auth import login_required
+# from flaskr.auth import login_required
 from flaskr.db import get_db
 
 from pprint import pprint
@@ -39,8 +39,8 @@ def index():
     # for document in posts:
     #     print(document, file=sys.stderr)
 
-    # return render_template('blog/index.html', posts=posts)
-    return dumps(posts)
+    return render_template('blog/index.html', posts=posts)
+    # return dumps(posts)
 
 @bp.route('/create', methods=('GET', 'POST'))
 # @login_required
@@ -76,7 +76,7 @@ def get_post(id, check_author=True):
     return post
 
 @bp.route('/<string:id>/update', methods=('POST',))
-@login_required
+# @login_required
 def update(id):
     #id here is a string
     post = get_post(id)
@@ -101,7 +101,7 @@ def update(id):
     return Response(status=404)
 
 @bp.route('/<string:id>/delete', methods=('POST',))
-@login_required
+# @login_required
 def delete(id):
     try:
         post = get_post(id)

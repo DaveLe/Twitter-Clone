@@ -45,7 +45,7 @@ class LoginPage extends Component{
 					placeholder="Username" 
 					onChange={this.handleChange}
 				/>
-				<h1>{this.state.username}</h1>
+				
 
 				<input 
 				type="password" 
@@ -54,7 +54,7 @@ class LoginPage extends Component{
 				placeholder="Password" 
 				onChange={this.handleChange}
 				/>
-				<h1>{this.state.password}</h1>
+				
 				<button>Login</button>
 			</form>
 		)
