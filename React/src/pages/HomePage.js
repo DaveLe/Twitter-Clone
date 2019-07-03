@@ -11,9 +11,10 @@ class HomePage extends Component{
 	constructor(){
 		super()
 		this.state = {
-			isLoggedClicked: false,
-			isRegisterClicked:false,
-			username: "David"
+			// isLoggedClicked: false,
+			// isRegisterClicked:false,
+			registerText: "Register",
+			loggedText: "Login"
 
 			
 		}
@@ -21,25 +22,10 @@ class HomePage extends Component{
 		// this.handleRegistrationClick = this.handleRegistrationClick.bind(this)
 	}
 
-	// handleRegistrationClick(){
-	// 	this.setState(prevState => {
-	// 		return{
-	// 			isRegisterClicked : !prevState.isRegisterClicked
-	// 		}
-	// 	})
-	// }
-
-	// handleLogClick(){
-	// 	this.setState(prevState => {
-	// 		return{
-	// 			isLoggedClicked : !prevState.isLoggedClicked
-	// 		}
-	// 	})
-	// }
-
+	
 	render(){
 		// let registerText = this.state.isRegisterClicked ? <RegistrationPage /> : "Register"
-		let loggedText = this.state.isLoggedClicked? "Log Out" : "Log In"
+		// let loggedText = this.state.isLoggedClicked? "Log Out" : "Log In"
 
 		return(
 
@@ -51,19 +37,23 @@ class HomePage extends Component{
 				</Link>
 
 				<h1>Twitter-Clone</h1>
+
+
 				<Link to="/register">
 					<button 
-						name = "isRegisterClicked" 
-						value = {this.state.isRegisterClicked}> 
-					Register
+						// name = "isRegisterClicked" 
+						// value = {this.state.isRegisterClicked}
+						> 
+					{this.state.registerText}
 					</button>
 				</Link>
 
 				<Link to="/login">
 					<button 
-						name = "isLoggedClicked" 
-						value = {this.state.isLoggedClicked}> 
-					Login
+						// name = "isLoggedClicked" 
+						// value = {this.state.isLoggedClicked}> 
+						>
+					{this.state.loggedText}
 					</button>
 				</Link>
 

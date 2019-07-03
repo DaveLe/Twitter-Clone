@@ -3,8 +3,8 @@ import axios from "axios"
 
 
 class LoginPage extends Component{
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 		this.state = {
 			username:"",
 			password:""
@@ -28,15 +28,22 @@ class LoginPage extends Component{
             username: this.state.username,
             password: this.state.password
         };
-        axios.post(window.location.origin + '/auth/login', loginInfo)
+
+        axios.post('http://127.0.0.1:5000/auth/login', loginInfo)
             .then(res => {
-                window.location.reload();
+            	//login should now be logout(login/logout ternary)
+            	//register should now be name (register/name ternary)
+            	//new should now appear(am i logged in or not ternary)
+            	//edit should now appear (am i logged in or not ternary)
+          		
+                window.location.href="/"
             })
 	}
 
 	render(){
 
 		return(
+
 			<form onSubmit={this.handleSubmit}>
 				<input 
 					type="text" 

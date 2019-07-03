@@ -31,13 +31,13 @@ export default class RegistrationPage extends Component{
 	        password: this.state.password
 	    };
 	    // flask link 'http://127.0.0.1:5000/', 
-	    axios.post('http://127.0.0.1:5000/auth/register', registerInfo)
+	    axios.post('http://127.0.0.1:5000/auth/register',registerInfo)
         .then(res => {
-        	console.log(res)
-            window.location.reload();
+			window.location.reload();
+			console.log(res)
         })
         .catch(err => {
-            console.log(err);
+            console.log(err.response);
         })
     
 	}
@@ -63,7 +63,7 @@ export default class RegistrationPage extends Component{
 					onChange={this.handleChange}
 				/>
 				
-				<button>Register</button>
+				<button>Submit</button>
 			</form>
 		)
 

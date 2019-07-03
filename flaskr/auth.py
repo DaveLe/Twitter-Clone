@@ -18,10 +18,12 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
+    print("hello", file=sys.stderr)
     if request.method == 'POST':
-        # print(request.form['username'], file=sys.stderr)
-        username = request.form['username']
-        password = request.form['password']
+        json_data = request.get_json()
+        # print(json_data, file=sys.stderr)
+        username = json_data.get('username')
+        password = json_data.get('password')
         client = get_db()
         db = client['pymongo_test']
         error = None
@@ -47,12 +49,15 @@ def register():
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        json_data = request.get_json()
+        print(json_data, file=sys.stderr)
+        username = json_data.get('username')
+        password = json_data.get('password')
+
         client = get_db()
         db = client['pymongo_test']
         error = None
-        user = db.user.find_one({'username':request.form['username']})
+        user = db.user.find_one({'username':username})
         # print(user['username'], file=sys.stderr)
         # print(user['password'], file=sys.stderr)
 
