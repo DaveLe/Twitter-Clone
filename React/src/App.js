@@ -1,30 +1,12 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import HomePage from './pages/HomePage'
+import { BrowserRouter, Route, Link,Switch } from 'react-router-dom'
+import LoginPage from './pages/LoginPage'
+import RegistrationPage from './pages/RegistrationPage'
+import PostsPage from './pages/PostsPage'
+import NewPostPage from './pages/NewPostPage'
 
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default class App extends Component{
   constructor(){
@@ -32,16 +14,17 @@ export default class App extends Component{
     this.state = {
     }
   }
-
-  // componentDidMount(){
-  //   axios.get('http://127.0.0.1:5000/').then(res => {
-  //     console.log(res)
-  //   })
-  // }
   render(){
+    
     return(
       <div>
-        <HomePage />
+        <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route path="/post" component={PostsPage}/>
+          <Route path="/login" component={LoginPage}/>
+          <Route path="/register" component={RegistrationPage}/>
+          <Route path="/new_post" component={NewPostPage}/>
+        </Switch>
       </div>
     )
   }

@@ -22,15 +22,17 @@ export default class NewPostPage extends Component{
 	       	body : this.state.body
 	    };
 	    // Go back to home page after posting your new post
-	    // axios.post(window.location.origin + '/auth/register', postInfo)
-     //    .then(res => {
-     //    	console.log(res)
-     //        window.location.reload();
-     //    })
-     //    .catch(err => {
-     //        console.log(err);
-     //    })
-    
+
+	    
+		// axios.post('http://127.0.0.1:5000/create', postInfo)
+	 //        .then(res => {
+		// 		window.location.reload();
+		// 		console.log(res)
+	 //        })
+	 //        .catch(err => {
+	 //            console.log(err.response);
+	 //        })
+	
 	}
 
 	render(){

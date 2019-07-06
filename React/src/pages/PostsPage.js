@@ -1,73 +1,78 @@
 import React, {Component} from 'react'
 import axios from "axios"
 import { BrowserRouter, Route, Link } from 'react-router-dom'
+import HomeButton from './HomeButton'
 
 /*
 	Should only see New if you are logged in
 
 */
 export default class PostsPage extends Component{
-
 	constructor(){
 		super()
 		this.state ={
-			posts:[]
-		}
-
-		
+			posts:[],
+			username:""
+		}	
+		this.handleLogout = this.handleLogout.bind(this)
 	}
-	
+	handleLogout(){
+		// axios.get('http://127.0.0.1:5000/auth/')
+  //     		.then(res => {
+
+  //     			// console.log(res);
+  //     			this.setState({posts: res.data});
+  //     		});
+	}
+
 
 	componentDidMount() {
-	    // axios.get('http://127.0.0.1:5000/')
-	    //   .then(res => {
-	    //     const posts = res.data;
-	    //     this.setState({ posts });
-
-	    // })
+		axios.defaults.withCredentials = true;
+		axios.get('http://127.0.0.1:5000/auth/session')
+	      	.then(res => {
+	      			console.log(res.data)
+	      			this.setState({username: res.data});
+	      		});
 
 	    axios.get('http://127.0.0.1:5000/')
       		.then(res => {
-      			console.log(res);
+
+      			// console.log(res);
       			this.setState({posts: res.data});
       		});
 
-      	// fetch('http://127.0.0.1:5000/')
-	    // 	.then(response => response.json())
-	    // 	.then(data => this.setState({ posts: data.posts}))
-
-    	// console.log(this.state.posts)
-    }
-
       	
+    }
+    
 
+    //I also have to get the usename used on the login page
+    //<button OnClick={handleLogout}>Logout</button>
 	render(){
 		return(
 			<div>
+				<h1>Hello, {this.state.username}</h1>
+				<HomeButton />
+				
 				<h1>Posts</h1>
 				<Link to="/new_post">
-					<li>New</li>
+					<li>New Post</li>
 				</Link>
-
-				<h2>Example post</h2>
-				<br/>Title
-				<br/>by username
-				<br/>Clickable Edit only if username id and posts author id match
-				<br/>body
-
 				{this.state.posts.map(post => (
 					<div>
-						<li key={post._id.$oid}>{post.title}</li>
-						<li>{post.userinfo.username}</li>
+						<li key={post._id.$oid}>Title: {post.title}</li>
+						<li>Username: {post.userinfo.username}</li>
 						{/*<Link to">	
 							<li>Edit</li>
 						<Link/>
 					*/}
-						<li>{post.body}</li>
+						<li>Edit?</li>
+						<li>Body: {post.body}</li>
 						<br/>
 					</div>
 					))}
 
+				<br/>
+				
 
 
 			</div>

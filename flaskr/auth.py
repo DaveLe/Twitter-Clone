@@ -2,6 +2,8 @@ import functools
 from bson import ObjectId
 import sys
 from flask import Response
+from bson.json_util import dumps
+from flask import jsonify
 
 #from pymongo import MongoClient
 
@@ -18,11 +20,12 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
-    print("hello", file=sys.stderr)
+    
     if request.method == 'POST':
         json_data = request.get_json()
         # print(json_data, file=sys.stderr)
         username = json_data.get('username')
+        # print(username, file=sys.stderr)
         password = json_data.get('password')
         client = get_db()
         db = client['pymongo_test']
@@ -48,9 +51,13 @@ def register():
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
+
+    # if request.method == 'OPTIONS':
+    #     return Response(status=200)
+
     if request.method == 'POST':
         json_data = request.get_json()
-        print(json_data, file=sys.stderr)
+        # print(json_data, file=sys.stderr)
         username = json_data.get('username')
         password = json_data.get('password')
 
@@ -70,24 +77,35 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = str(user['_id'])
-            return Response(status=200)
-            # return redirect(url_for('index'))
+            session['username'] = username
+            session.modified = True
+            # session.permanent = True
+            x = jsonify(session['user_id'])
+            print(session['user_id'], file=sys.stderr)
+            print(x, file=sys.stderr)
+            return session['username']
+            # return dumps(user)
 
-        # flash(error)
-
-    # return render_template('auth/login.html')
     return Response(status=404)
 
-@bp.before_app_request
+# @bp.route('/der', methods=('GET',))
+# def fku():
+#     return session.get('user_id')
+
+@bp.route('/session', methods=('GET',))
 def load_logged_in_user():
-    client = get_db()
-    db = client['pymongo_test']
-    user_id = session.get('user_id')
-    # print(user_id, file=sys.stderr)
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = db.user.find_one({'_id': ObjectId(user_id)})
+    print(session, file=sys.stderr)
+    if request.method == 'GET':
+       
+        client = get_db()
+        db = client['pymongo_test']
+        user_id = session.get('user_id')
+        print(user_id, file=sys.stderr)
+        if user_id is None:
+            return Response(status=404)
+        else:
+            return jsonify(session.get('username'))
+            # db.user.find_one({'_id': ObjectId(user_id)})
         # print(g.user, file=sys.stderr)
 
 
