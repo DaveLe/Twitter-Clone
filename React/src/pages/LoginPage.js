@@ -25,6 +25,7 @@ class LoginPage extends Component{
 	}
 
 	handleSubmit = event => {
+		axios.defaults.withCredentials = true;
 
 		event.preventDefault();
         const loginInfo = {

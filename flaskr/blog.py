@@ -4,6 +4,7 @@ from flask import (
 import flask
 from werkzeug.exceptions import abort
 
+from flask import session
 # from flaskr.auth import login_required
 from flaskr.db import get_db
 
@@ -55,11 +56,12 @@ def create():
         title = json_data.get('title')
         body = json_data.get('body')
 
-        error = None
         db = get_db()['pymongo_test']
-        #How is date created????
+        print(title, file=sys.stderr)
+        print(body, file=sys.stderr)
+        print(session['user_id'], file=sys.stderr)
         try:
-            db.post.insert_one({'title': title, 'body': body, 'author_id': g.user['_id']})
+            db.post.insert_one({'title': title, 'body': body, 'author_id': ObjectId(session['user_id'])})
             return Response(status=200)
         except:
             return Response(status=404)

@@ -17,18 +17,17 @@ export default class PostsPage extends Component{
 		this.handleLogout = this.handleLogout.bind(this)
 	}
 	handleLogout(){
-		// axios.get('http://127.0.0.1:5000/auth/')
-  //     		.then(res => {
+		axios.get('http://127.0.0.1:5000/auth/logout',{withCredentials:true})
+      		.then(res => {
+      			window.location.href="/"
 
-  //     			// console.log(res);
-  //     			this.setState({posts: res.data});
-  //     		});
+      		});
 	}
 
 
 	componentDidMount() {
-		axios.defaults.withCredentials = true;
-		axios.get('http://127.0.0.1:5000/auth/session')
+		// axios.defaults.withCredentials = true;
+		axios.get('http://127.0.0.1:5000/auth/session',{withCredentials:true})
 	      	.then(res => {
 	      			console.log(res.data)
 	      			this.setState({username: res.data});
@@ -37,7 +36,7 @@ export default class PostsPage extends Component{
 	    axios.get('http://127.0.0.1:5000/')
       		.then(res => {
 
-      			// console.log(res);
+      			console.log(res);
       			this.setState({posts: res.data});
       		});
 
@@ -45,36 +44,39 @@ export default class PostsPage extends Component{
     }
     
 
-    //I also have to get the usename used on the login page
-    //<button OnClick={handleLogout}>Logout</button>
 	render(){
+		
 		return(
 			<div>
 				<h1>Hello, {this.state.username}</h1>
 				<HomeButton />
+				<button onClick={this.handleLogout}>Logout</button>
 				
 				<h1>Posts</h1>
-				<Link to="/new_post">
-					<li>New Post</li>
-				</Link>
+				{this.state.username === "" ? null :
+					<Link to="/new_post">
+						<li>New Post</li>
+					</Link>
+				}
+
 				{this.state.posts.map(post => (
 					<div>
-						<li key={post._id.$oid}>Title: {post.title}</li>
-						<li>Username: {post.userinfo.username}</li>
-						{/*<Link to">	
-							<li>Edit</li>
-						<Link/>
-					*/}
-						<li>Edit?</li>
-						<li>Body: {post.body}</li>
-						<br/>
+						<p key={post._id.$oid}>
+							Title: {post.title} <br/>
+							Username: {post.userinfo.username} <br/>
+							{this.state.username === post.userinfo.username ? 
+								<Link to="edit_page">
+									Edit <br/>
+								</Link> 
+								: null
+							}
+							Body: {post.body} <br/>
+						</p>
 					</div>
 					))}
 
 				<br/>
 				
-
-
 			</div>
 		)
 	}
