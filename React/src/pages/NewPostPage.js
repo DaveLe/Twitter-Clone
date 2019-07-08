@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import axios from "axios"
 
-
-
 export default class NewPostPage extends Component{
 	state = {
 		title:"",
@@ -17,8 +15,6 @@ export default class NewPostPage extends Component{
 	}
 
 	handleSubmit = event => {
-		axios.defaults.withCredentials = true;
-
 		event.preventDefault();
 
 	    const postInfo = {
@@ -29,7 +25,7 @@ export default class NewPostPage extends Component{
 	    
 		axios.post('http://127.0.0.1:5000/create', postInfo)
 	        .then(res => {
-				window.location.reload();
+				window.location.href="/post"
 				console.log(res)
 	        })
 	        .catch(err => {

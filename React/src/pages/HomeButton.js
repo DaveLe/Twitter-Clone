@@ -1,7 +1,5 @@
 import React from 'react'
-import {Route,Link} from 'react-router-dom'
-import HomePage from './HomePage'
-
+import {Link} from 'react-router-dom'
 
 function HomeButton(){
 	return(

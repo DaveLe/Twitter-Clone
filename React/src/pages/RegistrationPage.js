@@ -2,16 +2,6 @@ import React, {Component} from 'react'
 import axios from "axios"
 
 export default class RegistrationPage extends Component{
-	// constructor(){
-	// 	super()
-	// 	this.state = {
-	// 		username:"",
-	// 		password:""
-
-	// 	}
-	// 	this.handleChange = this.handleChange.bind(this)
-	// 	this.handleSubmit = this.handleSubmit.bind(this)
-	// }
 	state = {
 		username: "",
 		password: ""

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import HomePage from './pages/HomePage'
-import { BrowserRouter, Route, Link,Switch } from 'react-router-dom'
 import LoginPage from './pages/LoginPage'
 import RegistrationPage from './pages/RegistrationPage'
 import PostsPage from './pages/PostsPage'
 import NewPostPage from './pages/NewPostPage'
+import {Route,Switch } from 'react-router-dom'
+import axios from "axios";
 
 
 export default class App extends Component{
@@ -13,9 +13,12 @@ export default class App extends Component{
     super()
     this.state = {
     }
+
   }
+
+
   render(){
-    
+    axios.defaults.withCredentials = true; 
     return(
       <div>
         <Switch>

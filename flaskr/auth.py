@@ -104,7 +104,7 @@ def load_logged_in_user():
         if user_id is None:
             return Response(status=404)
         else:
-            return jsonify(session.get('username'))
+            return jsonify(session.get('username'),session.get('user_id'))
             # db.user.find_one({'_id': ObjectId(user_id)})
         # print(g.user, file=sys.stderr)
 

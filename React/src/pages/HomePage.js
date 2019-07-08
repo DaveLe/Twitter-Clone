@@ -1,13 +1,9 @@
 import React, {Component} from 'react'
-import axios from "axios";
-import LoginPage from './LoginPage'
-import RegistrationPage from './RegistrationPage'
-import PostsPage from './PostsPage'
-import NewPostPage from './NewPostPage'
-import { BrowserRouter, Route, Link,Switch } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
-class HomePage extends Component{
+
+export default class HomePage extends Component{
 	constructor(){
 		super()
 		this.state = {
@@ -15,13 +11,10 @@ class HomePage extends Component{
 			loggedText: "Login",
 			username:""
 		}
-		
 	}
 
 	render(){
-
 		return(
-
 			<div>
 				<h1>Twitter-Clone</h1>
 				
@@ -37,4 +30,3 @@ class HomePage extends Component{
 	}
 }
 
-export default HomePage

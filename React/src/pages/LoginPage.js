@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import axios from "axios"
-import PostsPage from './PostsPage'
 
-
-class LoginPage extends Component{
+export default class LoginPage extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
@@ -12,20 +10,16 @@ class LoginPage extends Component{
 			user:[]
 
 		}
-		this.handleChange = this.handleChange.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
-	handleChange(event){
+	handleChange = event => {
 		const {name,value} =  event.target
 		this.setState({
 			[name]:value
-
 		})
 	}
 
 	handleSubmit = event => {
-		axios.defaults.withCredentials = true;
 
 		event.preventDefault();
         const loginInfo = {
@@ -35,20 +29,14 @@ class LoginPage extends Component{
 
         axios.post('http://127.0.0.1:5000/auth/login', loginInfo)
             .then(res => {
-            	// console.log(res)
-            	console.log(res.data)
-            	// setCookies(username,re)
              	 window.location.href="/post"
                 // this.props.history.push("/post")
             })
 	}
 
 	render(){
-
 		return(
 			<div>
-
-
 				<form onSubmit={this.handleSubmit}>
 					<input 
 						type="text" 
@@ -58,7 +46,6 @@ class LoginPage extends Component{
 						onChange={this.handleChange}
 					/>
 					
-
 					<input 
 						type="password" 
 						name = "password" 
@@ -71,9 +58,7 @@ class LoginPage extends Component{
 				</form>
 			</div>
 		)
-
 		
 	}
 }
 
-export default LoginPage
