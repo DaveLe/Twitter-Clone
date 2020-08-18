@@ -27,6 +27,8 @@ def register():
         username = json_data.get('username')
         # print(username, file=sys.stderr)
         password = json_data.get('password')
+        name = json_data.get('name')
+
         client = get_db()
         db = client['pymongo_test']
         error = None
@@ -35,11 +37,13 @@ def register():
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
+        elif not name:
+            error = 'Name is required'
         elif db.user.find_one( {'username': username}) is not None:
             error = 'User {} is already registered.'.format(username)
 
         if error is None:
-            db.user.insert_one({'username': username, 'password': generate_password_hash(password)})
+            db.user.insert_one({'username': username, 'password': generate_password_hash(password), 'name' : name})
             # db.user.save()
             # return redirect(url_for('auth.login'))
             return Response(status=200)

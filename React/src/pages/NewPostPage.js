@@ -3,8 +3,8 @@ import axios from "axios"
 
 export default class NewPostPage extends Component{
 	state = {
-		title:"",
-		body:""
+		
+		content:""
 	}
 
 
@@ -18,8 +18,8 @@ export default class NewPostPage extends Component{
 		event.preventDefault();
 
 	    const postInfo = {
-	        title: this.state.title,
-	       	body : this.state.body
+	        
+	       	content : this.state.content
 	    };
 
 	    
@@ -38,24 +38,13 @@ export default class NewPostPage extends Component{
 
 		return(
 			<form onSubmit={this.handleSubmit}>
-				<hr/>
-				Title
-				<br/>
-				<textarea  
-					cols="50" 
-					name = "title" 
-					value = {this.state.title}
-					onChange={this.handleChange}
-				/>
 
-				<br/>
-				body
 				<br/>
 				<textarea 
 					rows="10" 
 					cols="50"
-					name = "body" 
-					value = {this.state.body}
+					name = "content" 
+					value = {this.state.content}
 					onChange={this.handleChange}
 				/>	
 				<button>Post</button>

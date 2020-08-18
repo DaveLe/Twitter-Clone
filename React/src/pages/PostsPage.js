@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import HomeButton from './HomeButton'
+import NavigationBar from './NavigationBar'
 import {Link} from 'react-router-dom'
 import axios from "axios"
+import {Container} from 'react-bootstrap'
+
 
 export default class PostsPage extends Component{
 	constructor(){
@@ -62,38 +65,43 @@ export default class PostsPage extends Component{
 	render(){
 		
 		return(
+			
 			<div>
-				<h1>Hello, {this.state.username}</h1>
-				<HomeButton />
-				<button onClick={this.handleLogout}>Logout</button>
-				
-				<h1>Posts</h1>
-				{this.state.username === "" ? 
-					null 
-					: <Link to="/new_post">
-						<li>New Post</li>
-					</Link>
-				}
+				<NavigationBar />
+				<Container>
+					<h1>Hello, {this.state.username}</h1>
+					<HomeButton />
+					<button onClick={this.handleLogout}>Logout</button>
+					
+					<h1>Posts</h1>
+					{this.state.username === "" ? 
+						null 
+						: <Link to="/new_post">
+							<li>New Post</li>
+						</Link>
+					}
 
-				{this.state.posts.map(post => (
-						<p key={post._id.$oid}>
-							Title: {post.title} <br/>
-							Username: {post.userinfo.username} <br/>
-							{this.state.username === post.userinfo.username ? 
-								"This is your message" 
-								: null
-							}
-							Body: {post.body} <br/>
-							{this.state.username === post.userinfo.username ? 
-								<button name = "post_id" value = {post._id.$oid} onClick={this.handleDelete}>Delete</button>
-								: null
-							}
-						</p>		
-					))}
+					{/* {this.state.posts.map(post => (
+							<p key={post._id.$oid}>
+								Title: {post.title} <br/>
+								Username: {post.userinfo.username} <br/>
+								{this.state.username === post.userinfo.username ? 
+									"This is your message" 
+									: null
+								}
+							
+								Body: {post.body} <br/>
+								{this.state.username === post.userinfo.username ? 
+									<button name = "post_id" value = {post._id.$oid} onClick={this.handleDelete}>Delete</button>
+									: null
+								}
+							</p>		
+						))} */}
 
-				<br/>
-				
+					<br/>
+				</Container>	
 			</div>
+
 		)
 	}
 }

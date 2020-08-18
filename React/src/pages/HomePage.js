@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import './style.css';
 
 
 
@@ -14,19 +15,27 @@ export default class HomePage extends Component{
 	}
 
 	render(){
+		
 		return(
-			<div>
-				<h1>Twitter-Clone</h1>
-				
-				<Link to="/register">
-					<button> Register</button>
-				</Link>
-
-				<Link to="/login">
-					<button>Login</button>
-				</Link>
+			<div className='background'>
+				<div >
+					<h1 className='header'>Twitter Clone</h1>
+					
+				</div>
+				<hr/>
+				<div className='position'>
+					<Link to="/register">
+						<button className='button'>Sign Up</button>
+					</Link>
+					<br/><br/>
+					<Link to="/login">
+						<button className='button' >Login</button>
+					</Link>
+					
+				</div>
 			</div>
 		)
 	}
 }
+
 

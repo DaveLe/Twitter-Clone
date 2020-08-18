@@ -39,29 +39,25 @@ def index():
       } }
     ]);
      
-    # for document in posts:
-    #     print(document, file=sys.stderr)
+    for document in posts:
+        print(document, file=sys.stderr)
 
-    # return render_template('blog/index.html', posts=posts)
-    return dumps(posts)
+    return render_template('blog/index.html', posts=posts)
+    # return dumps(posts)
 
 @bp.route('/create', methods=('GET', 'POST'))
 # @login_required
 def create():
     if request.method == 'POST':
-        # title = request.form['title']
-        # body = request.form['body']
         json_data = request.get_json()
         # print(json_data, file=sys.stderr)
-        title = json_data.get('title')
-        body = json_data.get('body')
-
+        content = json_data.get('content')
         db = get_db()['pymongo_test']
-        print(title, file=sys.stderr)
-        print(body, file=sys.stderr)
-        print(session['user_id'], file=sys.stderr)
+        # print(title, file=sys.stderr)
+        # print(body, file=sys.stderr)
+        # print(session['user_id'], file=sys.stderr)
         try:
-            db.post.insert_one({'title': title, 'body': body, 'author_id': ObjectId(session['user_id'])})
+            db.post.insert_one({'content':content, 'author_id': ObjectId(session['user_id'])})
             return Response(status=200)
         except:
             return Response(status=404)

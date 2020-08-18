@@ -1,0 +1,59 @@
+.background{
+  height: 100vh;
+  background-color: lightblue;
+}
+
+.position{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+}
+
+.button {
+  margin-top: 15px;
+  width: 50%;
+  border: solid;
+  padding: 1px ;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100px;
+  cursor: pointer;
+  background-color: rgb(254,216,177);
+}
+
+.form{
+  padding: 100px 100px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 30px;
+ 
+}
+
+
+.login{
+  width:100%;
+  max-width:330px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+}
+
+.box {
+  width:100%;
+  display:inline-block;
+ border:2px solid #ECF0F1;
+ margin:0;
+}
+
+.header{
+    text-align: center;
+		color: blue;
+		font-size: 52px;
+		font-family: serif;
+		text-shadow: 2px 2px #ffffff;
+}

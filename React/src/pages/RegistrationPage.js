@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import axios from "axios"
+import './style.css';
+import {Form,FormGroup,FormControl, Button} from 'react-bootstrap'
 
 export default class RegistrationPage extends Component{
 	state = {
 		username: "",
-		password: ""
+		password: "",
+		name: ""
 	}
 
 	handleChange = event => {
@@ -17,7 +20,8 @@ export default class RegistrationPage extends Component{
 		event.preventDefault();
 
 	    const registerInfo = {
-	        username: this.state.username,
+			username: this.state.username,
+			name: this.state.name,
 	        password: this.state.password
 	    };
 	    // flask link 'http://127.0.0.1:5000/', 
@@ -35,26 +39,37 @@ export default class RegistrationPage extends Component{
 	render(){
 
 		return(
-			<form onSubmit={this.handleSubmit}>
-				<input 
-					type="text" 
-					name = "username" 
-					value = {this.state.username}
-					placeholder="Username" 
-					onChange={this.handleChange}
-				/>
 			
+			<div className='background'> 
+				<div>
+					<Form className='login' onSubmit={this.handleSubmit}>
+						<h1>
+							<span className='header'>Twitter Clone </span>
+						</h1>
+						
+						<FormGroup>
+							<Form.Label>Email </Form.Label>
+							<FormControl type="email" placeholder="Email"  name="username"
+								value = {this.state.username} onChange={this.handleChange}/>
+						</FormGroup>
 
-				<input 
-					type="password" 
-					name = "password" 
-					value = {this.state.password}
-					placeholder="Password" 
-					onChange={this.handleChange}
-				/>
-				
-				<button>Submit</button>
-			</form>
+						<FormGroup>
+							<Form.Label>Name </Form.Label>
+							<FormControl type="text" placeholder="Name"  name="name"
+								value = {this.state.name} onChange={this.handleChange}/>
+						</FormGroup>
+
+						<FormGroup>
+							<Form.Label>Password </Form.Label>
+							<FormControl type="password" placeholder="Password" name = "password" 
+								value = {this.state.password} onChange={this.handleChange}/>
+						</FormGroup>
+
+						<Button type="submit" className='btn-lg btn-dark btn-block'>Sign up</Button>
+						
+					</Form>
+				</div>
+			</div>
 		)
 
 		
