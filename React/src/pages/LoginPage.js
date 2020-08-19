@@ -9,8 +9,7 @@ export default class LoginPage extends Component{
 		super(props)
 		this.state = {
 			username:"",
-			password:"",
-			user:[]
+			password:""
 
 		}
 	}
@@ -29,7 +28,7 @@ export default class LoginPage extends Component{
             username: this.state.username,
             password: this.state.password
         };
-
+		axios.defaults.withCredentials = true; 
         axios.post('http://127.0.0.1:5000/auth/login', loginInfo)
             .then(res => {
              	 window.location.href="/post"
@@ -50,7 +49,7 @@ export default class LoginPage extends Component{
 				</h2>
 				<FormGroup>
 					<Form.Label>Email </Form.Label>
-					<FormControl type="email" placeholder="Email"  name="username"
+					<FormControl type="text" placeholder="Email"  name="username"
 						value = {this.state.username} onChange={this.handleChange}/>
 				</FormGroup>
 				<FormGroup>

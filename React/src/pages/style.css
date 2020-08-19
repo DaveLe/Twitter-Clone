@@ -57,3 +57,47 @@
 		font-family: serif;
 		text-shadow: 2px 2px #ffffff;
 }
+
+.smallerheader{
+  
+  color: blue;  
+  font-size: 28px;
+  font-family: serif;
+  text-shadow: 2px 2px #ffffff;
+}
+
+.navbar{
+width: 30%;
+background-color: lightblue;
+float:left;
+height: 100vh;
+display: inline-block;
+text-align:center;
+
+}
+
+.homepage{
+text-align: center;
+background-color: orange;
+height: 100vh;
+
+
+
+}
+
+.navbarbutton{
+border: none;
+background-color: lightblue;
+font-size: 35px;
+
+
+}
+
+.content{
+  resize:none;
+  background-color: lightblue;
+
+
+  
+}
+

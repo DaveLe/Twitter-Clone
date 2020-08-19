@@ -49,7 +49,7 @@ export default class RegistrationPage extends Component{
 						
 						<FormGroup>
 							<Form.Label>Email </Form.Label>
-							<FormControl type="email" placeholder="Email"  name="username"
+							<FormControl type="text" placeholder="Email"  name="username"
 								value = {this.state.username} onChange={this.handleChange}/>
 						</FormGroup>
 
